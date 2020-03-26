@@ -7,18 +7,16 @@
   <script src="https://unpkg.com/@babel/standalone@7.2.5/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+  <script src="./flashCardData.js"></script>
+
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <div id="app"></div>
   <script type="text/babel">
 // REACT - Prop "Properties":
-  var cardData = {
-    front: {
-      question: 'This is the question',
-      hint: ' This is the hint'
-    }
-  };
+    const cardData = importedFlashCardDataFile;
+
 // REACT - Class Component:
     class App extends React.Component {
       render() {
@@ -31,28 +29,30 @@
               An interactive flashcard app.
             </p>  
             <div className='card-list'>
-              {Card(cardData)} 
+              {cardData.map((card) => <Card front={card.front} />)}
             </div>
           </div>
         );
 
       }
     }
-// REACT - Functional Component:
-    var Card = function(props) {
-      return (
-        <div className='Card -front'>
-          <div className='front'>
-            <h3 className='question'>
-              {props.front.question}
-            </h3>
-            <p className='hint'>
-              <span>Hint:</span>
-              {props.front.hint}
-            </p>
+// REACT - Class Component:
+    class Card extends React.Component {
+      render() {
+        return (
+          <div className='Card -front'>
+            <div className='front'>
+              <h3 className='question'>
+                {this.props.front.question}
+              </h3>
+              <p className='hint'>
+                <span>Hint:</span>
+                {this.props.front.hint}
+              </p>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     };
 
     ReactDOM.render(<App />, document.getElementById('app'));
