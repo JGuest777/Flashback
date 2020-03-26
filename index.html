@@ -12,31 +12,33 @@
 <body>
   <div id="app"></div>
   <script type="text/babel">
-  // ! This is a REACT Prop
+// REACT - Prop "Properties":
   var cardData = {
     front: {
       question: 'This is the question',
       hint: ' This is the hint'
     }
   };
-
-  // ! This is a REACT Component
-    var App = function() {
-      return (
-        <div className='App'>
-          <h1 className='title'>
-            Flashback  
-          </h1>
-          <p className='sub-title'>
-            An interactive flashcard app.
-          </p>  
-          <div className='card-list'>
-            {Card(cardData)} 
+// REACT - Class Component:
+    class App extends React.Component {
+      render() {
+        return (
+          <div className='App'>
+            <h1 className='title'>
+              Flashback  
+            </h1>
+            <p className='sub-title'>
+              An interactive flashcard app.
+            </p>  
+            <div className='card-list'>
+              {Card(cardData)} 
+            </div>
           </div>
-        </div>
-      );
-    };
-// ! This is a REACT Component
+        );
+
+      }
+    }
+// REACT - Functional Component:
     var Card = function(props) {
       return (
         <div className='Card -front'>
@@ -53,7 +55,7 @@
       );
     };
 
-    ReactDOM.render(App(), document.getElementById('app'));
+    ReactDOM.render(<App />, document.getElementById('app'));
   </script>
 </body>
 </html>
